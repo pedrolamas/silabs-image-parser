@@ -1,0 +1,53 @@
+{
+  "name": "typescript-package-template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "yarn lint && yarn build && yarn test",
+    "test": "jest --passWithNoTests",
+    "lint": "yarn run lint:code && yarn run lint:other",
+    "lint:code": "yarn run eslint:defaults",
+    "lint:other": "yarn run prettier:defaults --check",
+    "format": "yarn run format:code && yarn run format:other",
+    "format:code": "yarn run eslint:defaults --fix",
+    "format:other": "yarn run prettier:defaults --write",
+    "eslint:defaults": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "prettier:defaults": "prettier \"**/*.{json,md,markdown,css,scss,yaml,yml}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroLamas/typescript-package-template.git"
+  },
+  "keywords": [],
+  "author": "Pedro Lamas <pedrolamas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PedroLamas/typescript-package-template/issues"
+  },
+  "homepage": "https://github.com/PedroLamas/typescript-package-template#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "@types/mocha": "^7.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^4.2.3",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
