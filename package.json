@@ -1,7 +1,7 @@
 {
-  "name": "typescript-package-template",
+  "name": "silabs-image-parser",
   "version": "0.0.1",
-  "description": "",
+  "description": "Silabs Image Parser",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -19,17 +19,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PedroLamas/typescript-package-template.git"
+    "url": "git+https://github.com/PedroLamas/silabs-image-parser.git"
   },
   "keywords": [],
   "author": "Pedro Lamas <pedrolamas@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PedroLamas/typescript-package-template/issues"
+    "url": "https://github.com/PedroLamas/silabs-image-parser/issues"
   },
-  "homepage": "https://github.com/PedroLamas/typescript-package-template#readme",
-  "dependencies": {},
+  "homepage": "https://github.com/PedroLamas/silabs-image-parser#readme",
+  "dependencies": {
+    "buffer-crc32": "^0.2.13"
+  },
   "devDependencies": {
+    "@types/buffer-crc32": "^0.2.0",
     "@types/jest": "^22.2.3",
     "@types/mocha": "^5.2.7",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
@@ -45,7 +48,8 @@
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.0",
-    "typescript": "^3.4.3"
+    "typescript": "^3.4.3",
+    "zigbee-herdsman-converters": "^12.0.198"
   },
   "files": [
     "dist/**/*"
