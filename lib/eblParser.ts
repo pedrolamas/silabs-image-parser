@@ -1,23 +1,23 @@
 import assert from 'assert';
 import crc32 from 'buffer-crc32';
 
-const validSilabsCrc = 0x2144df1c as const;
+const validSilabsCrc = <const>0x2144df1c;
 
-const imageSignature = 0xe350 as const;
+const imageSignature = <const>0xe350;
 
-const eblTagHeader = 0x0 as const;
-const eblTagMetadata = 0xf608 as const;
-const eblTagProg = 0xfe01 as const;
-const eblTagMfgprog = 0x02fe as const;
-const eblTagEraseprog = 0xfd03 as const;
-const eblTagEnd = 0xfc04 as const;
+const eblTagHeader = <const>0x0;
+const eblTagMetadata = <const>0xf608;
+const eblTagProg = <const>0xfe01;
+const eblTagMfgprog = <const>0x02fe;
+const eblTagEraseprog = <const>0xfd03;
+const eblTagEnd = <const>0xfc04;
 
-const eblTagEncHeader = 0xfb05 as const;
-const eblTagEncInit = 0xfa06 as const;
-const eblTagEncEblData = 0xf907 as const;
-const eblTagEncMac = 0xf709 as const;
+const eblTagEncHeader = <const>0xfb05;
+const eblTagEncInit = <const>0xfa06;
+const eblTagEncEblData = <const>0xf907;
+const eblTagEncMac = <const>0xf709;
 
-const eblPadding = 0xff as const;
+const eblPadding = <const>0xff;
 
 type EblHeader = {
   tag: typeof eblTagHeader;
@@ -105,7 +105,7 @@ const parse = (buffer: Buffer): EblData => {
 
     position += 4 + element.len;
 
-    if (element.tag == eblTagEnd) {
+    if (element.tag === eblTagEnd) {
       break;
     }
   }

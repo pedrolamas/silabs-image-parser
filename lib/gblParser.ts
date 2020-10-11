@@ -1,16 +1,16 @@
 import assert from 'assert';
 import crc32 from 'buffer-crc32';
 
-const validSilabsCrc = 0x2144df1c;
+const validSilabsCrc = <const>0x2144df1c;
 
-const gblTagHeader = 0x03a617eb as const;
-const gblTagApplication = 0xf40a0af4 as const;
-const gblTagBootloader = 0xf50909f5 as const;
-const gblTagSeUpgrade = 0x5ea617eb as const;
-const gblTagMetadata = 0xf60808f6 as const;
-const gblTagProg = 0xfe0101fe as const;
-const gblTagEraseProg = 0xfd0303fd as const;
-const gblTagEnd = 0xfc0404fc as const;
+const gblTagHeader = <const>0x03a617eb;
+const gblTagApplication = <const>0xf40a0af4;
+const gblTagBootloader = <const>0xf50909f5;
+const gblTagSeUpgrade = <const>0x5ea617eb;
+const gblTagMetadata = <const>0xf60808f6;
+const gblTagProg = <const>0xfe0101fe;
+const gblTagEraseProg = <const>0xfd0303fd;
+const gblTagEnd = <const>0xfc0404fc;
 
 type GblHeader = {
   tag: typeof gblTagHeader;
@@ -92,7 +92,7 @@ const parse = (buffer: Buffer): GblData => {
 
     position += 8 + element.len;
 
-    if (element.tag == gblTagEnd) {
+    if (element.tag === gblTagEnd) {
       break;
     }
   }
