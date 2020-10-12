@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import zhc from 'zigbee-herdsman-converters/ota/common';
-import { getFormat, eblParser, gblParser } from '..';
+import { getFormat, eblParser, gblParser } from '.';
 
 type OtaImages = [
   string,
@@ -17,7 +17,7 @@ const otaImages: OtaImages[] = [
 
 describe('Parse images', () => {
   test.each(otaImages)(`Can parse "%s"`, (filename, meta) => {
-    const data = fs.readFileSync(path.join(__dirname, 'otaImageFiles', filename));
+    const data = fs.readFileSync(path.join(__dirname, '__otaImageFiles__', filename));
 
     // fix for IKEA OTA images
     const start = data.readUInt32LE(0) === 0x5349474e ? 12 + data.readUInt16LE(12) : 0;
