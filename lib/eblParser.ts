@@ -1,7 +1,7 @@
 import assert from 'assert';
 import crc32 from 'buffer-crc32';
 
-const validSilabsCrc = <const>0x2144df1c;
+const validSilabsCrc32 = <const>0x2144df1c;
 
 const imageSignature = <const>0xe350;
 
@@ -112,7 +112,7 @@ const parse = (buffer: Buffer): EblData => {
 
   const calculatedCrc32 = crc32.unsigned(buffer.slice(0, position));
 
-  assert.strictEqual(calculatedCrc32, validSilabsCrc, `Image CRC-32 is invalid`);
+  assert.strictEqual(calculatedCrc32, validSilabsCrc32, `Image CRC-32 is invalid`);
 
   while (position < buffer.length) {
     assert.strictEqual(buffer.readUInt8(position), eblPadding, `EBL padding contains invalid bytes`);

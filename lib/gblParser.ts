@@ -1,7 +1,7 @@
 import assert from 'assert';
 import crc32 from 'buffer-crc32';
 
-const validSilabsCrc = <const>0x2144df1c;
+const validSilabsCrc32 = <const>0x2144df1c;
 
 const gblTagHeader = <const>0x03a617eb;
 const gblTagApplication = <const>0xf40a0af4;
@@ -101,7 +101,7 @@ const parse = (buffer: Buffer): GblData => {
 
   const calculatedCrc32 = crc32.unsigned(buffer);
 
-  assert.strictEqual(calculatedCrc32, validSilabsCrc, `Image CRC-32 is invalid`);
+  assert.strictEqual(calculatedCrc32, validSilabsCrc32, `Image CRC-32 is invalid`);
 
   return {
     header,
