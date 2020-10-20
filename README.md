@@ -8,3 +8,7 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/pedrolamas?style=social)](https://twitter.com/pedrolamas '@pedrolamas')
 
 Just a Silabs Image Parser written with TypeScript.
+
+## License
+
+MIT
