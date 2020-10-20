@@ -19,15 +19,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PedroLamas/silabs-image-parser.git"
+    "url": "git+https://github.com/pedrolamas/silabs-image-parser.git"
   },
   "keywords": [],
   "author": "Pedro Lamas <pedrolamas@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PedroLamas/silabs-image-parser/issues"
+    "url": "https://github.com/pedrolamas/silabs-image-parser/issues"
   },
-  "homepage": "https://github.com/PedroLamas/silabs-image-parser#readme",
+  "homepage": "https://github.com/pedrolamas/silabs-image-parser#readme",
   "dependencies": {
     "buffer-crc32": "^0.2.13"
   },
