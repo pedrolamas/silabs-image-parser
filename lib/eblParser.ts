@@ -236,7 +236,7 @@ const parseEblSubElement = (data: Buffer, position: number): EblElement => {
       };
 
     default:
-      throw new Error(`unknown tag 0x${tag.toString(16)} at position ${position}`);
+      throw new Error(`Unknown tag 0x${tag.toString(16)} at position ${position}`);
   }
 };
 

@@ -51,6 +51,6 @@
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
-    "zigbee-herdsman-converters": "^12.0.207"
+    "zigbee-herdsman-converters": "*"
   }
 }

@@ -8,13 +8,14 @@ import { getFormat, eblParser, gblParser } from '.';
 type OtaImage = [
   string,
   {
-    format: string;
+    format: (index: number) => string | undefined;
   }
 ];
 
 const otaImages: OtaImage[] = [
-  ['10005777-4.1-TRADFRI-control-outlet-2.0.024.ota.ota.signed', { format: 'gbl' }],
-  ['10035514-2.1-TRADFRI-bulb-ws-2.3.050.ota.ota.signed', { format: 'ebl' }],
+  ['10005777-4.1-TRADFRI-control-outlet-2.0.024.ota.ota.signed', { format: () => 'gbl' }],
+  ['10035514-2.1-TRADFRI-bulb-ws-2.3.050.ota.ota.signed', { format: () => 'ebl' }],
+  ['100B-0112-01001500-ConfLightBLE-Lamps-EFR32MG13.zigbee', { format: (index: number) => (index == 0 ? undefined : 'gbl') }],
 ];
 
 describe('Parse images', () => {
@@ -29,10 +30,10 @@ describe('Parse images', () => {
 
       const image = zhc.parseImage(data.slice(start));
 
-      image.elements.forEach((element: { data: Buffer }) => {
+      image.elements.forEach((element: { data: Buffer }, index) => {
         const format = getFormat(element.data);
 
-        expect(format).to.equal(meta.format);
+        expect(format).to.equal(meta.format(index));
 
         switch (format) {
           case 'gbl':
