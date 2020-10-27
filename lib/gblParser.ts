@@ -21,6 +21,14 @@ const gblTagCertificateEcdsaP256 = 0xf30b0bf3;
 
 const gblPadding = <const>0x0;
 
+type ApplicationCertificate = {
+  structVersion: number;
+  flags: Buffer;
+  key: Buffer;
+  version: number;
+  signature: Buffer;
+};
+
 type GblTagBase<T> = {
   tag: T;
   len: number;
@@ -71,7 +79,7 @@ type GblEncryptionHeaderElement = GblTagBase<typeof gblTagEncHeader> & {
 
 type GblEncryptionInitAesCcmElement = GblTagBase<typeof gblTagEncInit> & {
   msgLen: number;
-  nouce: number;
+  nouce: Buffer;
 };
 
 type GblEncryptionDataElement = GblTagBase<typeof gblTagEncEblData> & {
@@ -79,16 +87,16 @@ type GblEncryptionDataElement = GblTagBase<typeof gblTagEncEblData> & {
 };
 
 type GblTagEncryptionAesCcmSignatureElement = GblTagBase<typeof gblTagEncMac> & {
-  eblMac: number;
+  eblMac: Buffer;
 };
 
 type GblCertificateEcdsaP256Element = GblTagBase<typeof gblTagCertificateEcdsaP256> & {
-  applicationCertificate: Buffer;
+  applicationCertificate: ApplicationCertificate;
 };
 
 type GblSignatureEcdsaP256Element = GblTagBase<typeof gblTagSignatureEcdsaP256> & {
-  r: number;
-  s: number;
+  r: Buffer;
+  s: Buffer;
 };
 
 type GblElement = GblApplicationElement | GblBootloaderElement | GblSeUpgradeElement | GblMetadataElement | GblProgElement | GblEndElement | GblEncryptionHeaderElement | GblEncryptionInitAesCcmElement | GblEncryptionDataElement | GblTagEncryptionAesCcmSignatureElement | GblCertificateEcdsaP256Element | GblSignatureEcdsaP256Element;
@@ -204,6 +212,8 @@ const parseGblSubElement = (data: Buffer, position: number): GblElement => {
       };
 
     case gblTagEnd:
+      assert.ok(len === 4, `End subelement length should be 4, but was ${len}`);
+
       return {
         tag,
         len,
@@ -211,6 +221,8 @@ const parseGblSubElement = (data: Buffer, position: number): GblElement => {
       };
 
     case gblTagEncHeader:
+      assert.ok(len === 12, `Encryption header subelement length should be 12, but was ${len}`);
+
       return {
         tag,
         len,
@@ -220,11 +232,13 @@ const parseGblSubElement = (data: Buffer, position: number): GblElement => {
       };
 
     case gblTagEncInit:
+      assert.ok(len === 16, `Encryption init subelement length should be 16, but was ${len}`);
+
       return {
         tag,
         len,
         msgLen: data.readUInt32BE(position + 8),
-        nouce: data.readUInt8(position + 12),
+        nouce: data.slice(position + 12, position + 24),
       };
 
     case gblTagEncEblData:
@@ -235,25 +249,35 @@ const parseGblSubElement = (data: Buffer, position: number): GblElement => {
       };
 
     case gblTagEncMac:
+      assert.ok(len === 16, `Encryption AES-CCM MAC subelement length should be 16, but was ${len}`);
+
       return {
         tag,
         len,
-        eblMac: data.readInt8(position + 8),
+        eblMac: data.slice(position + 8, position + 24),
       };
 
     case gblTagCertificateEcdsaP256:
       return {
         tag,
         len,
-        applicationCertificate: data.slice(position + 8, position + 8 + len),
+        applicationCertificate: {
+          structVersion: data.readInt8(position + 8),
+          flags: data.slice(position + 9, position + 13),
+          key: data.slice(position + 13, position + 77),
+          version: data.readUInt32BE(position + 77),
+          signature: data.slice(position + 81, position + 81 + 145),
+        },
       };
 
     case gblTagSignatureEcdsaP256:
+      assert.ok(len === 64, `ECDSA secp256r1 signature subelement length should be 64, but was ${len}`);
+
       return {
         tag,
         len,
-        r: data.readUInt32BE(position + 8),
-        s: data.readUInt32BE(position + 9),
+        r: data.slice(position + 8, position + 40),
+        s: data.slice(position + 40, position + 72),
       };
 
     default:
