@@ -21,6 +21,13 @@ const gblTagCertificateEcdsaP256 = 0xf30b0bf3;
 
 const gblPadding = <const>0x0;
 
+type ApplicationData = {
+  type: number;
+  version: number;
+  capabilities: number;
+  productId: Buffer;
+};
+
 type ApplicationCertificate = {
   structVersion: number;
   flags: Buffer;
@@ -40,10 +47,7 @@ type GblHeader = GblTagBase<typeof gblTagHeader> & {
 };
 
 type GblApplicationElement = GblTagBase<typeof gblTagApplication> & {
-  type: number;
-  version: number;
-  capabilities: number;
-  productId: Buffer;
+  applicationData: ApplicationData;
 };
 
 type GblBootloaderElement = GblTagBase<typeof gblTagBootloader> & {
@@ -171,10 +175,12 @@ const parseGblSubElement = (data: Buffer, position: number): GblElement => {
       return {
         tag,
         len,
-        type: data.readUInt32BE(position + 8),
-        version: data.readUInt32BE(position + 12),
-        capabilities: data.readUInt32BE(position + 16),
-        productId: data.slice(position + 20, position + 8 + len),
+        applicationData: {
+          type: data.readUInt32BE(position + 8),
+          version: data.readUInt32BE(position + 12),
+          capabilities: data.readUInt32BE(position + 16),
+          productId: data.slice(position + 20, position + 8 + len),
+        },
       };
 
     case gblTagBootloader:
