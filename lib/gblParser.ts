@@ -12,12 +12,12 @@ const gblTagProg = <const>0xfe0101fe;
 const gblTagEraseProg = <const>0xfd0303fd;
 const gblTagEnd = <const>0xfc0404fc;
 
-const gblTagEncHeader = 0xfb0505fb;
+const gblTagEncHeader = <const>0xfb0505fb;
 const gblTagEncInit = <const>0xfa0606fa;
 const gblTagEncEblData = <const>0xf90707f9;
-const gblTagEncMac = 0xf70909f7;
-const gblTagSignatureEcdsaP256 = 0xf70a0af7;
-const gblTagCertificateEcdsaP256 = 0xf30b0bf3;
+const gblTagEncMac = <const>0xf70909f7;
+const gblTagSignatureEcdsaP256 = <const>0xf70a0af7;
+const gblTagCertificateEcdsaP256 = <const>0xf30b0bf3;
 
 const gblPadding = <const>0x0;
 
