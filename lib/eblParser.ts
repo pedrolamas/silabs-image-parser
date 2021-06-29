@@ -90,7 +90,7 @@ const isValid = (buffer: Buffer): boolean => {
 
   const tag = buffer.readUInt16BE();
 
-  return tag === eblTagHeader || tag === eblTagEncHeader;
+  return (tag === eblTagHeader && buffer.readUInt16BE(6) === imageSignature) || tag === eblTagEncHeader;
 };
 
 const parse = (buffer: Buffer): EblData => {

@@ -16,6 +16,7 @@ const otaImages: OtaImage[] = [
   ['10005777-4.1-TRADFRI-control-outlet-2.0.024.ota.ota.signed', { format: () => 'gbl' }],
   ['10035514-2.1-TRADFRI-bulb-ws-2.3.050.ota.ota.signed', { format: () => 'ebl' }],
   ['100B-0112-01001500-ConfLightBLE-Lamps-EFR32MG13.zigbee', { format: (index: number) => (index == 0 ? undefined : 'gbl') }],
+  ['ED_Smoke_Sensor_SSIG_4.0.2.zigbee', { format: () => undefined }],
 ];
 
 describe('Parse images', () => {
