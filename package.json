@@ -28,29 +28,33 @@
     "url": "https://github.com/pedrolamas/silabs-image-parser/issues"
   },
   "homepage": "https://github.com/pedrolamas/silabs-image-parser#readme",
+  "engines": {
+    "node": ">=16.0",
+    "npm": ">=7.0"
+  },
   "dependencies": {
     "buffer-crc32": "^0.2.13"
   },
   "devDependencies": {
-    "@types/buffer-crc32": "^0.2.0",
-    "@types/chai": "^4.2.13",
-    "@types/mocha": "^8.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
-    "chai": "^4.2.0",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.12.0",
+    "@types/buffer-crc32": "^0.2.2",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-plugin-mocha": "^8.0.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
-    "mocha": "^10.1.0",
-    "prettier": "^2.1.2",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
-    "zigbee-herdsman-converters": "*"
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4",
+    "zigbee-herdsman-converters": "^15.0.10"
   }
 }

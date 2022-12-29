@@ -1,4 +1,4 @@
-declare module 'zigbee-herdsman-converters/ota/common' {
+declare module 'zigbee-herdsman-converters/lib/ota/common' {
   export type OTAImage = {
     elements: OTAImageElement[];
   };

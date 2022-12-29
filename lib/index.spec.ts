@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import zhc from 'zigbee-herdsman-converters/ota/common';
+import zhc from 'zigbee-herdsman-converters/lib/ota/common';
 import { expect } from 'chai';
 
 import { getFormat, eblParser, gblParser } from '.';

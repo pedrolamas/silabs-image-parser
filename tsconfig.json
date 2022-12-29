@@ -9,5 +9,5 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/__*__"]
+  "exclude": ["node_modules", "dist", "**/__*__"]
 }
