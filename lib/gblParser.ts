@@ -19,8 +19,6 @@ const gblTagEncMac = <const>0xf70909f7;
 const gblTagSignatureEcdsaP256 = <const>0xf70a0af7;
 const gblTagCertificateEcdsaP256 = <const>0xf30b0bf3;
 
-const gblPadding = <const>0x0;
-
 type ApplicationData = {
   type: number;
   version: number;
@@ -140,12 +138,6 @@ const parse = (buffer: Buffer): GblData => {
   const calculatedCrc32 = crc32.unsigned(buffer.slice(0, position));
 
   assert.strictEqual(calculatedCrc32, validSilabsCrc32, `Image CRC-32 is invalid`);
-
-  while (position < buffer.length) {
-    assert.strictEqual(buffer.readUInt8(position), gblPadding, `GBL padding contains invalid bytes`);
-
-    position++;
-  }
 
   return {
     header,
